@@ -6,7 +6,7 @@ angular.module('flappyBirdApp')
 
         };
     return {
-      template: '<div style="border:solid; border-width: 3px; width:30px; height: 30px"></div>',
+      template: '<div class="flippyBird"></div>',
       restrict: 'EA',
       scope: {
         position: '=position'
@@ -15,10 +15,9 @@ angular.module('flappyBirdApp')
           /**** bind space key event ****/
           $document.keyup(function(event){
               if(event.which === 32){
-                  scope.position = {top: scope.position.top-20, left: scope.position.left};
+                  scope.position = {top: scope.position.top-40, left: scope.position.left};
 //                  element.offset({top: scope.position.top-20, left: scope.position.left});
                   scope.$digest();
-
               }
           });
 

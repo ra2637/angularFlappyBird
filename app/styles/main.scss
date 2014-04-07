@@ -10,9 +10,15 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 }
 
 /* Space out content a bit */
+
+html, body {
+    height:100%;
+}
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
+    height: 100%;
+    margin:0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -67,6 +73,10 @@ body {
     margin-top: 28px;
 }
 
+.container{
+    height:100%;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
@@ -88,4 +98,24 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+.flippyBird{
+    background-image: url("/images/flappy_bird.gif");
+    width: 134px;
+    height: 127px;
+}
+
+.gameContainer{
+    position: relative;
+    background:#70DBDB;
+    height:100%;
+    overflow:hidden;
+
+}
+
+bird{
+    position:absolute;
+    // -webkit-transition: top 2s;
+    // transition: top 2s;
 }
