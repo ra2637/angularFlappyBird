@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('flappyBirdApp')
-  .controller('MainCtrl', ['$scope', function ($scope) {
+  .controller('MainCtrl', ['$scope','$interval', function ($scope,$interval) {
         $scope.birdPosition = {top: 150, left: 550};
 
         $scope.setPosition = function(){
@@ -10,5 +10,9 @@ angular.module('flappyBirdApp')
             {
                 $scope.birdPosition = {top: 150, left: 550};
             }
+        };
+
+        $scope.start = function(){
+            $interval($scope.setPosition, 15);
         };
   }]);
