@@ -9,13 +9,15 @@ angular.module('flappyBirdApp')
       template: '<div class="flippyBird"></div>',
       restrict: 'EA',
       scope: {
-        position: '=position'
+        position: '=position',
+        velocity: '=velocity'
       },
       link: function postLink(scope, element, attrs) {
           /**** bind space key event ****/
           $document.keyup(function(event){
               if(event.which === 32){
-                  scope.position = {top: scope.position.top-40, left: scope.position.left};
+                  scope.velocity = -10;
+                  //scope.position = {top: scope.position.top - 100, left: scope.position.left};
 //                  element.offset({top: scope.position.top-20, left: scope.position.left});
                   scope.$digest();
               }
