@@ -1,4 +1,5 @@
-<div class="gameContainer">
+<div class="gameContainer" ng-init="initPipes()">
+    <pipe ng-repeat="pipe in pipes" height="pipe.height" position="pipe.position"></pipe>
     <bird position="birdPosition" velocity="birdVelocity"></bird>
     <button ng-click="setPosition()">setPosition()</button>
     <button ng-click="start()">start()</button>

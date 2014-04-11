@@ -25,7 +25,7 @@ angular.module('flappyBirdApp')
 
           scope.$watch('position', function(){
               element.offset(scope.position);
-              console.log(element.position(), element.offset());
+//              console.log(element.position(), element.offset());
           });
 
       }
