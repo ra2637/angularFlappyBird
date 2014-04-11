@@ -4,7 +4,7 @@ angular.module('flappyBirdApp')
   .controller('MainCtrl', ['$scope','$interval', function ($scope,$interval) {
     $scope.birdPosition = {top: 150, left: 550};
     var screenHeight = window.innerHeight;
-
+    var containerPosition = angular.element(document.getElementsByClassName('gameContainer')).position();
     $scope.birdVelocity = 0;
 	$scope.birdAccerlator = 0.3;
     $scope.setPosition = function(){
@@ -50,6 +50,11 @@ angular.module('flappyBirdApp')
         for(var i=0; i<$scope.pipes.length; i++){
             var pipe = $scope.pipes[i];
             pipe.position.left = pipe.position.left - 5;
+
+            if(pipe.position.left+80 < containerPosition.left){
+                $scope.pipes.shift();
+                $scope.pipes.push(createPipe(3));
+            }
         }
     }
   }]);
