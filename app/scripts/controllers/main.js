@@ -1,34 +1,67 @@
 'use strict';
 
 angular.module('flappyBirdApp')
-  .controller('MainCtrl', ['$scope','$interval', function ($scope,$interval) {
-    $scope.birdPosition = {top: 150, left: 550};
+  .controller('MainCtrl', ['$scope','$interval', '$document', function ($scope,$interval, $document) {
     var screenHeight = window.innerHeight;
     var screenWidth = window.innerWidth;
     var containerPosition = angular.element(document.getElementsByClassName('gameContainer')).position();
-    $scope.birdVelocity = 0;
-	$scope.birdAccerlator = 0.3;
+    var gameStartInterval;
+    var gameStatusArr = ['prepare', 'start', 'dead'];
+    // $scope.gameStatus = gameStatusArr[0];
+    $document.keyup(function(event){
+      if(event.which === 32){
+        if ($scope.gameStatus === gameStatusArr[0]) {
+            $scope.gameStatus = gameStatusArr[1];
+            $scope.start();
+        }else if($scope.gameStatus === gameStatusArr[2]){
+            $scope.init();
+            $scope.$digest();
+        }
+      }
+    });
+
     $scope.setPosition = function(){
         $scope.birdVelocity += $scope.birdAccerlator;
         $scope.birdPosition = {top: $scope.birdPosition.top + $scope.birdVelocity, left:550};
-        if($scope.birdPosition.top > screenHeight)
+        if($scope.birdPosition.top+120 > screenHeight)
         {
             //alert('you die');
-            $scope.birdPosition = {top: 150, left: 550};
-            $scope.birdVelocity = 0;
+            // $scope.birdPosition = {top: 150, left: 550};
+            if($interval.cancel(gameStartInterval)){
+                $scope.birdVelocity = 0;
+                $scope.gameStatus = gameStatusArr[2];
+            }
         }
     };
 
     $scope.start = function(){
-        $interval(function(){
+        gameStartInterval = $interval(function(){
             $scope.setPosition();
             $scope.setPipePosition();
         }, 15);
     };
 
+    $scope.init = function(){
+        $scope.gameStatus = gameStatusArr[0];
+        $scope.initBird();
+        $scope.initPipes();
+    }
+
+    $scope.initBird = function(){
+        $scope.birdPosition = {top: 150, left: 550};
+        $scope.birdVelocity = 0;
+        $scope.birdAccerlator = 0.3;
+    }
+
     $scope.initPipes = function(){
-        $scope.pipes = [];
-        $scope.pipesBottom = [];
+        if($scope.pipes === undefined){
+            $scope.pipes = [];
+            $scope.pipesBottom = [];
+        }else{
+            $scope.pipes.length = 0;
+            $scope.pipesBottom.length = 0;
+        }
+        
         for(var i=0; i<1; i++){
             $scope.pipes.push(createPipe(i));
             $scope.pipesBottom.push(createPipe(i));
@@ -67,4 +100,7 @@ angular.module('flappyBirdApp')
             }
         }
     }
+
+
+
   }]);
