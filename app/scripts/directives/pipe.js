@@ -13,7 +13,7 @@ angular.module('flappyBirdApp')
         angular.element(element[0].firstChild).css('height', scope.height);
         scope.$watch('position', function(){
             element.offset(scope.position);
-            console.log(element.position(), element.offset());
+            // console.log(element.position(), element.offset());
         }, true);
       }
     };

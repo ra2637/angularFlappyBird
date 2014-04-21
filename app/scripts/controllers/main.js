@@ -45,6 +45,9 @@ angular.module('flappyBirdApp')
             $scope.setPipePosition();
             if($scope.collisionDetect())
             {
+                if($interval.cancel(gameStartInterval)){
+                    $scope.gameStatus = gameStatusArr[2];
+                }
                 console.log('collision and die');
             }
         }, 15);
