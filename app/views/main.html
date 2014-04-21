@@ -1,9 +1,9 @@
-<div class="gameContainer" ng-init="init()">
+<div class="gameContainer" ng-init="init()" style="position:relative">
     <!-- <button ng-click="setPosition()">setPosition()</button> -->
     <!-- <button ng-click="start()">start()</button> -->
-    <div ng-show="gameStatus === 'prepare'">Press Space to Start game</div>
-    <pipe ng-repeat="pipe in pipes" height="pipe.height" position="pipe.position"></pipe>
+    <div ng-show="gameStatus === 'prepare'" style="position:absolute;">Press Space to Start game</div>
+    <div ng-show="gameStatus === 'dead'" style="position:absolute;">You Die</div>
+    <pipe ng-repeat="pipe in pipes" height="pipe.height" position="pipe.position" style="position:absolute; top:0px"></pipe>
     <bird position="birdPosition" velocity="birdVelocity"></bird>
-    <pipe ng-repeat="pipe in pipesBottom" height="pipe.height" position="pipe.position"></pipe>
-    <div ng-show="gameStatus === 'dead'">You Die</div>
+    <pipe ng-repeat="pipe in pipesBottom" height="pipe.height" position="pipe.position" style="position:absolute; bottom:0px"></pipe>
 </div>

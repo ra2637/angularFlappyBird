@@ -23,6 +23,10 @@ angular.module('flappyBirdApp')
     $scope.setPosition = function(){
         $scope.birdVelocity += $scope.birdAccerlator;
         $scope.birdPosition = {top: $scope.birdPosition.top + $scope.birdVelocity, left:550};
+        if($scope.birdPosition.top < 0){
+            $scope.birdPosition.top = 0;
+        }
+        
         if($scope.birdPosition.top+120 > screenHeight)
         {
             //alert('you die');
@@ -72,7 +76,7 @@ angular.module('flappyBirdApp')
         return {
             height: generatePipeHeight(100, 250),
             position: {
-                top: 0,
+                // top: 0,
                 left: (screenWidth-700)/2+700+ (230+80)*index
             }
         }
@@ -85,18 +89,22 @@ angular.module('flappyBirdApp')
     $scope.setPipePosition = function(){
         for(var i=0; i<$scope.pipes.length; i++){
             var pipe = $scope.pipes[i];
+            var pipeBottom = $scope.pipesBottom[i];
             // pipe.position.left = pipe.position.left - 5;
             pipe.position.left = pipe.position.left - 5;
+            pipeBottom.position.left = pipeBottom.position.left - 5;
 
             if(i==$scope.pipes.length-1)
             {
                 if((containerPosition.left+700-pipe.position.left) > 310){
                     $scope.pipes.push(createPipe(0));
+                    $scope.pipesBottom.push(createPipe(0));
                 }
             }
 
             if(pipe.position.left+80 < containerPosition.left){
                 $scope.pipes.shift();
+                $scope.pipesBottom.shift();
             }
         }
     }
