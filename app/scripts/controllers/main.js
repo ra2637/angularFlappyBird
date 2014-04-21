@@ -43,7 +43,35 @@ angular.module('flappyBirdApp')
         gameStartInterval = $interval(function(){
             $scope.setPosition();
             $scope.setPipePosition();
+            if($scope.collisionDetect())
+            {
+                console.log('collision and die');
+            }
         }, 15);
+    };
+
+
+    $scope.collisionDetect = function(){
+        $scope.birdPosition;
+        var birdTop = $scope.birdPosition.top +130;//+ $scope.birdPosition.height;
+        var birdBottom = $scope.birdPosition.top;
+        var birdLeft = $scope.birdPosition.left;
+        var birdRight = $scope.birdPosition.left + 200;//$scope.birdPosition.width;
+        for(var i=0; i<$scope.pipes.length; i++){
+            var pipe = $scope.pipes[i];
+            var pipeTop = pipe.position.top + pipe.height;
+            var pipeBottom = pipe.position.top;
+            var pipeLeft = pipe.position.left;
+            var pipeRight = pipe.position.left + 80;//pipe.width;
+            if( !((birdBottom > pipeTop) || 
+                (birdTop < pipeBottom) || 
+                (birdLeft > pipeRight) ||
+                (birdRight < pipeLeft) )) {
+                return true;
+            }else {
+                return false;
+            }
+        }
     };
 
     $scope.init = function(){
