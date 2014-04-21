@@ -7,6 +7,7 @@ angular.module('flappyBirdApp')
     var containerPosition = angular.element(document.getElementsByClassName('gameContainer')).position();
     var gameStartInterval;
     var gameStatusArr = ['prepare', 'start', 'dead'];
+    var safeHeight = 170;
     // $scope.gameStatus = gameStatusArr[0];
     $document.keyup(function(event){
       if(event.which === 32){
@@ -26,7 +27,7 @@ angular.module('flappyBirdApp')
         if($scope.birdPosition.top < 0){
             $scope.birdPosition.top = 0;
         }
-        
+
         if($scope.birdPosition.top+120 > screenHeight)
         {
             //alert('you die');
@@ -66,19 +67,33 @@ angular.module('flappyBirdApp')
             $scope.pipesBottom.length = 0;
         }
         
-        for(var i=0; i<1; i++){
-            $scope.pipes.push(createPipe(i));
-            $scope.pipesBottom.push(createPipe(i));
-        }
+            var pipes = createPipe();
+            $scope.pipes.push(pipes.topPipe);
+            $scope.pipesBottom.push(pipes.bottomPipe);
+        // for(var i=0; i<1; i++){
+        //     $scope.pipes.push(createPipe(i));
+        //     $scope.pipesBottom.push(createPipe(i));
+        // }
     }
 
-    var createPipe = function(index){
+    var createPipe = function(){
+        var h = generatePipeHeight(100, 250);
         return {
-            height: generatePipeHeight(100, 250),
-            position: {
-                // top: 0,
-                left: (screenWidth-700)/2+700+ (230+80)*index
+            topPipe:{
+                height: h,
+                position: {
+                    // top: 0,
+                    left: (screenWidth-700)/2+700
+                }    
+            },
+            bottomPipe:{
+                height: screenHeight-h-safeHeight,
+                position: {
+                    // top: 0,
+                    left: (screenWidth-700)/2+700
+                }    
             }
+            
         }
     }
 
@@ -97,8 +112,9 @@ angular.module('flappyBirdApp')
             if(i==$scope.pipes.length-1)
             {
                 if((containerPosition.left+700-pipe.position.left) > 310){
-                    $scope.pipes.push(createPipe(0));
-                    $scope.pipesBottom.push(createPipe(0));
+                    var pipes = createPipe();
+                    $scope.pipes.push(pipes.topPipe);
+                    $scope.pipesBottom.push(pipes.bottomPipe);
                 }
             }
 
