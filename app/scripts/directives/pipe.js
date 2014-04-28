@@ -3,7 +3,7 @@
 angular.module('flappyBirdApp')
   .directive('pipe', function () {
     return {
-      template: '<div style="border:solid; border-width:2px; background-color:forestgreen; width:80px"></div>',
+      template: '<div style="width:80px"></div>',
       restrict: 'EA',
       scope:{
           height: '=',

@@ -16,7 +16,7 @@ angular.module('flappyBirdApp')
             $scope.start();
         }else if($scope.gameStatus === gameStatusArr[2]){
             $scope.init();
-            $scope.$digest();
+            $scope.$digest();        
         }
       }
     });
@@ -56,10 +56,10 @@ angular.module('flappyBirdApp')
 
     $scope.collisionDetect = function(){
         $scope.birdPosition;
-        var birdTop = $scope.birdPosition.top +127;//+ $scope.birdPosition.height;
-        var birdBottom = $scope.birdPosition.top;
-        var birdLeft = $scope.birdPosition.left;
-        var birdRight = $scope.birdPosition.left + 134;//$scope.birdPosition.width;
+        var birdTop = $scope.birdPosition.top + (76*0.95);//+ $scope.birdPosition.height;
+        var birdBottom = $scope.birdPosition.top + (76*0.05);
+        var birdLeft = $scope.birdPosition.left + (102*0.05);
+        var birdRight = $scope.birdPosition.left + (102*0.95);//$scope.birdPosition.width;
         for(var i=0; i<$scope.pipes.length; i++){
             var pipe = $scope.pipes[i];
             var pipeTop = pipe.position.top + pipe.height;
@@ -93,7 +93,7 @@ angular.module('flappyBirdApp')
     }
 
     $scope.initBird = function(){
-        $scope.birdPosition = {top: 150, left: 550};
+        $scope.birdPosition = {top: (screenHeight/2)-38, left: 550};
         $scope.birdVelocity = 0;
         $scope.birdAccerlator = 0.3;
     }
@@ -127,11 +127,12 @@ angular.module('flappyBirdApp')
                 }    
             },
             bottomPipe:{
+                style: 'bottomPipe',
                 height: screenHeight-h-safeHeight,
                 position: {
                     bottom: 0,
                     left: (screenWidth-700)/2+700
-                }    
+                },   
             }
             
         }

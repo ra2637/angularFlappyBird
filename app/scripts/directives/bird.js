@@ -10,7 +10,8 @@ angular.module('flappyBirdApp')
       restrict: 'EA',
       scope: {
         position: '=position',
-        velocity: '=velocity'
+        velocity: '=velocity',
+        gameStatus: '=gameStatus'
       },
       link: function postLink(scope, element, attrs) {
           /**** bind space key event ****/
@@ -26,6 +27,14 @@ angular.module('flappyBirdApp')
           scope.$watch('position', function(){
               element.offset(scope.position);
 //              console.log(element.position(), element.offset());
+          });
+
+          scope.$watch('gameStatus', function(){
+              if(scope.gameStatus === 'dead'){
+                element.addClass('dieBird');
+              }else{
+                element.removeClass('dieBird');
+              };
           });
 
       }

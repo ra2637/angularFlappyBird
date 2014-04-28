@@ -100,19 +100,52 @@ body {
 
 .flippyBird{
     background-image: url("/images/flappy_bird.gif");
-    width: 134px;
-    height: 127px;
+    width: 102px;
+    height: 76px;
 }
 
 .gameContainer{
     position: relative;
-    background:#70DBDB;
     height:100%;
     overflow:hidden;
+    background: url("/images/flappyGameBg.png") #58bfcb repeat-x center bottom;
 
 }
 
 bird{
     position:absolute;
+}
+
+pipe > div {
+    background-image: url("/images/pipeTop.png");
+    background-position: center bottom;
+}
+
+
+pipe.pipesBottom > div {
+    background-image: url("/images/pipeBottom.png");
+    background-position: center top;
+}
+
+.gameStatus {
+    position :absolute;
+    width: 500px;
+    height: 200px;
+    left:100px;
+    top:30px;
+    background: url("/images/start_bg.png") no-repeat center top;
+    z-index: 99
+
+}
+
+.gameDie{
+    background-image: url("/images/over_bg.png");
+    top: 30%;
+}
+
+.dieBird > div {
+    background-image: url("/images/bird_die.png");
+    background-repeat: no-repeat;
+
 }
 
