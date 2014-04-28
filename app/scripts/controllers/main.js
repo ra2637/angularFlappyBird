@@ -7,7 +7,7 @@ angular.module('flappyBirdApp')
     var containerPosition = angular.element(document.getElementsByClassName('gameContainer')).position();
     var gameStartInterval;
     var gameStatusArr = ['prepare', 'start', 'dead'];
-    var safeHeight = 170;
+    var safeHeight = 300;
     // $scope.gameStatus = gameStatusArr[0];
     $document.keyup(function(event){
       if(event.which === 32){
@@ -56,23 +56,32 @@ angular.module('flappyBirdApp')
 
     $scope.collisionDetect = function(){
         $scope.birdPosition;
-        var birdTop = $scope.birdPosition.top +130;//+ $scope.birdPosition.height;
+        var birdTop = $scope.birdPosition.top +127;//+ $scope.birdPosition.height;
         var birdBottom = $scope.birdPosition.top;
         var birdLeft = $scope.birdPosition.left;
-        var birdRight = $scope.birdPosition.left + 200;//$scope.birdPosition.width;
+        var birdRight = $scope.birdPosition.left + 134;//$scope.birdPosition.width;
         for(var i=0; i<$scope.pipes.length; i++){
             var pipe = $scope.pipes[i];
             var pipeTop = pipe.position.top + pipe.height;
             var pipeBottom = pipe.position.top;
             var pipeLeft = pipe.position.left;
             var pipeRight = pipe.position.left + 80;//pipe.width;
-            if( !((birdBottom > pipeTop) || 
-                (birdTop < pipeBottom) || 
-                (birdLeft > pipeRight) ||
-                (birdRight < pipeLeft) )) {
+            if( !((birdBottom >= pipeTop) || 
+                (birdTop <= pipeBottom) || 
+                (birdLeft >= pipeRight) ||
+                (birdRight <= pipeLeft) )) {
                 return true;
             }else {
-                return false;
+                pipeBottom = pipeTop + safeHeight;
+                pipeTop = screenHeight;//pipe.position.top + pipe.height;
+                if( !((birdBottom >= pipeTop) || 
+                (birdTop <= pipeBottom) || 
+                (birdLeft >= pipeRight) ||
+                (birdRight <= pipeLeft) )) {
+                   return true; 
+                }
+                else
+                    return false;
             }
         }
     };
@@ -113,14 +122,14 @@ angular.module('flappyBirdApp')
             topPipe:{
                 height: h,
                 position: {
-                    // top: 0,
+                    top: 0,
                     left: (screenWidth-700)/2+700
                 }    
             },
             bottomPipe:{
                 height: screenHeight-h-safeHeight,
                 position: {
-                    // top: 0,
+                    bottom: 0,
                     left: (screenWidth-700)/2+700
                 }    
             }
