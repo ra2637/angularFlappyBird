@@ -1,9 +1,1 @@
-<div class="gameContainer" ng-init="init()" style="position:relative">
-    <!-- <button ng-click="setPosition()">setPosition()</button> -->
-    <!-- <button ng-click="start()">start()</button> -->
-    <div class="gameStatus" ng-show="gameStatus === 'prepare'"></div>
-    <div class="gameStatus gameDie" ng-show="gameStatus === 'dead'"></div>
-    <pipe ng-repeat="pipe in pipes" height="pipe.height" position="pipe.position" style="position:absolute; top:0px"></pipe>
-    <bird position="birdPosition" velocity="birdVelocity" game-status="gameStatus"></bird>
-    <pipe class="pipesBottom" ng-repeat="pipe in pipesBottom" height="pipe.height" position="pipe.position" style="position:absolute; bottom:0px"></pipe>
-</div>
+<div class="gameContainer" ng-init="init()" style="position:relative"><!-- <button ng-click="setPosition()">setPosition()</button> --><!-- <button ng-click="start()">start()</button> --><div class="gameStatus" ng-show="gameStatus === 'prepare'"></div><div class="gameStatus gameDie" ng-show="gameStatus === 'dead'"></div><pipe ng-repeat="pipe in pipes" height="pipe.height" position="pipe.position" style="position:absolute; top:0px"></pipe><bird position="birdPosition" velocity="birdVelocity" game-status="gameStatus"></bird><pipe class="pipesBottom" ng-repeat="pipe in pipesBottom" height="pipe.height" position="pipe.position" style="position:absolute; bottom:0px"></pipe></div>
