@@ -99,7 +99,7 @@ body {
 }
 
 .flippyBird{
-    background-image: url("/images/flappy_bird.gif");
+    background-image: url("/angularFlappyBird/images/flappy_bird.gif");
     width: 102px;
     height: 76px;
 }
@@ -108,7 +108,7 @@ body {
     position: relative;
     height:100%;
     overflow:hidden;
-    background: url("/images/flappyGameBg.png") #58bfcb repeat-x center bottom;
+    background: url("/angularFlappyBird/images/flappyGameBg.png") #58bfcb repeat-x center bottom;
 
 }
 
@@ -117,13 +117,13 @@ bird{
 }
 
 pipe > div {
-    background-image: url("/images/pipeTop.png");
+    background-image: url("/angularFlappyBird/images/pipeTop.png");
     background-position: center bottom;
 }
 
 
 pipe.pipesBottom > div {
-    background-image: url("/images/pipeBottom.png");
+    background-image: url("/angularFlappyBird/images/pipeBottom.png");
     background-position: center top;
 }
 
@@ -133,18 +133,18 @@ pipe.pipesBottom > div {
     height: 200px;
     left:100px;
     top:30px;
-    background: url("/images/start_bg.png") no-repeat center top;
+    background: url("/angularFlappyBird/images/start_bg.png") no-repeat center top;
     z-index: 99
 
 }
 
 .gameDie{
-    background-image: url("/images/over_bg.png");
+    background-image: url("/angularFlappyBird/images/over_bg.png");
     top: 30%;
 }
 
 .dieBird > div {
-    background-image: url("/images/bird_die.png");
+    background-image: url("/angularFlappyBird/images/bird_die.png");
     background-repeat: no-repeat;
 
 }
